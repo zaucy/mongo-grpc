@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+import "bson.proto";
+
+package mongo;
+
+message WriteConcern {
+	
+}
+
+message Query {
+	map<string, bson.Value> key_value = 1;
+}
+
+message FindRequest {
+	Query query = 1;
+	map<string, bool> projection = 2;
+}
+
+message FindOneResponse {
+	bson.Document found_document = 1;
+}
+
+message InsertOneRequest {
+	bson.Document document = 1;
+	WriteConcern write_concern = 2;
+}
+
+message InsertOneResponse {
+	bool acknowledged = 1;
+	bson.ObjectID inserted_id = 2;
+}
+
+message InsertManyRequest {
+	repeated bson.Document document = 1;
+	WriteConcern write_concern = 2;
+	bool ordered = 3;
+}
+
+message InsertManyResponse {
+	bool acknowledged = 1;
+	repeated bson.ObjectID inserted_id = 2;
+}
+
+service CollectionProxy {
+
+	rpc FindOne(FindRequest) returns(bson.Document) {};
+	rpc Find(FindRequest) returns(stream bson.Document) {};
+
+	rpc InsertOne(InsertOneRequest) returns(InsertOneResponse) {};
+	rpc InsertMany(InsertManyRequest) returns(InsertManyResponse) {};
+}

@@ -1,0 +1,13 @@
+srcs_dir: ./proto/
+srcs:
+  - bson.proto
+  - mongo.proto
+output:
+  - js:
+      dir: dist/node
+      options:
+        import_style: commonjs
+  - grpc-node:
+      dir: dist/node
+      custom: true
+      plugin: grpc_tools_node_protoc_plugin

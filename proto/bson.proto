@@ -1,0 +1,96 @@
+syntax = "proto3";
+
+package bson;
+
+message ObjectID {
+  // Can be a 24 byte hex string or a 12 byte binary string
+  string id = 1;
+}
+
+/*
+// https://docs.mongodb.com/manual/reference/bson-types/#objectid
+message ObjectID {
+  // 4-byte value representing the seconds since the Unix epoch
+  sfixed32 seconds = 1;
+
+  // 3-byte machine identifier
+  int32 machine_identifier = 2;
+
+  // 2-byte process id
+  int32 process_id = 3;
+
+  // 3-byte counter, starting with a random value
+  int32 counter = 4;
+}
+*/
+
+// https://docs.mongodb.com/manual/reference/bson-types/#timestamps
+message Timestamp {
+  // time_t value (seconds since the Unix epoch)
+  sfixed32 seconds = 1;
+
+  // incrementing ordinal for operations within a given second.
+  sfixed32 ordinal = 2;
+}
+
+// https://docs.mongodb.com/manual/reference/bson-types/#date
+message Date {
+  sfixed64 milliseconds = 1;
+}
+
+message Array {
+  repeated Value element = 2;
+}
+
+message Object {
+  map<string, Value> key_value = 3;
+}
+
+// http://bsonspec.org/spec.html
+message Regex {
+  // the regex pattern
+  string pattern = 1;
+
+  // the regex options string. Options are identified by characters, which must
+  // be stored in alphabetical order.
+  // Valid options are:
+  //   'i' for case insensitive matching
+  //   'm' for multiline matching
+  //   'x' for verbose mode
+  //   'l' to make \w, \W, etc. locale dependent
+  //   's' for dotall mode ('.' matches everything)
+  //   'u' to make \w, \W, etc. match unicode.
+  string options = 2;
+}
+
+message Null {}
+
+// https://docs.mongodb.com/manual/reference/bson-types/
+message Value {
+  oneof value {
+    double double = 1;
+    string string = 2;
+    Object object = 3;
+    Array array = 4;
+    bytes bin_data = 5;
+    // ?? undefined (deprecated) = 6
+    ObjectID object_id = 7;
+    bool bool = 8;
+    Date date = 9;
+    Null null = 10;
+    Regex regex = 11;
+    // ?? db_pointer (deprecated) = 12;
+    // ?? javascript = 13
+    // ?? symbol (deprecated) = 14
+    // ?? javascriptWithScope = 15
+    int32 int = 16;
+    Timestamp timestamp = 17;
+    int64 long = 18;
+    // ?? decimal (decimal128) = 19
+  }
+}
+
+message Document {
+  ObjectID id = 1;
+  map<string, Value> key_value = 2;
+}
