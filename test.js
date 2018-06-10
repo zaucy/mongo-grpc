@@ -2,9 +2,9 @@ const bson = require("bson");
 const pify = require("pify");
 const grpc = require("grpc");
 const mongodb = require("mongodb");
-const mongo_grpc_pb = require('./dist/node/mongo_grpc_pb');
-const mongo_pb = require('./dist/node/mongo_pb');
-const bson_pb = require('./dist/node/bson_pb');
+const mongo_grpc_pb = require('./dist/node/proto/mongo_grpc_pb');
+const mongo_pb = require('./dist/node/proto/mongo_pb');
+const bson_pb = require('./dist/node/proto/bson_pb');
 const test = require('ava');
 const {MongoGrpcCollectionProxy} = require("./node/proxy");
 

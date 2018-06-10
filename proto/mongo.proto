@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-import "bson.proto";
+import "proto/bson.proto";
 
 package mongo;
 

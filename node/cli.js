@@ -26,7 +26,7 @@ const colors = require("colors");
 const grpc = require("grpc");
 const mongodb = require("mongodb");
 const {URL} = require("url");
-const {CollectionProxyService} = require("../dist/node/mongo_grpc_pb");
+const {CollectionProxyService} = require("../dist/node/proto/mongo_grpc_pb");
 const {MongoGrpcCollectionProxy} = require("./proxy");
 
 if(argv['no-color']) {

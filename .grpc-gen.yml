@@ -1,7 +1,8 @@
-srcs_dir: ./proto/
+# srcs_dir has to be root for bazel proto/BUILD cc_grpc_library to work
+srcs_dir: ./
 srcs:
-  - bson.proto
-  - mongo.proto
+  - proto/bson.proto
+  - proto/mongo.proto
 output:
   - js:
       dir: dist/node

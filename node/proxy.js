@@ -1,7 +1,7 @@
 const bson = require("bson");
 const mongodb = require("mongodb");
-const mongo_pb = require("../dist/node/mongo_pb");
-const bson_pb = require('../dist/node/bson_pb');
+const mongo_pb = require("../dist/node/proto/mongo_pb");
+const bson_pb = require('../dist/node/proto/bson_pb');
 
 function protoObjectIdToBson(protoObjectId) {
   let objectId = new bson.ObjectID(protoObjectId.getId());
