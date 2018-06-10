@@ -1,0 +1,30 @@
+{
+  "name": "mongo-proto",
+  "version": "0.0.0",
+  "main": "dist/node/mongo_grpc_pb.js",
+  "repository": "https://github.com/zaucy/mongo-proto",
+  "author": "Ezekiel Warren",
+  "license": "MIT",
+  "bin": {
+    "mongo-grpc-proxy": "node/cli.js"
+  },
+  "scripts": {
+    "build": "grpc-gen",
+    "dev": "grpc-gen -w",
+    "test": "ava"
+  },
+  "devDependencies": {
+    "ava": "1.0.0-beta.5.1",
+    "grpc-gen": "^1.0.2",
+    "grpc-tools": "^1.6.6",
+    "pify": "^3.0.0"
+  },
+  "dependencies": {
+    "colors": "^1.3.0",
+    "fs-extra": "^6.0.1",
+    "google-protobuf": "^3.5.0",
+    "grpc": "^1.12.2",
+    "mongodb": "^3.0.10",
+    "yargs": "^11.0.0"
+  }
+}
