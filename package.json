@@ -1,5 +1,5 @@
 {
-  "name": "mongo-proto",
+  "name": "mongo-grpc",
   "version": "0.0.0",
   "main": "dist/node/mongo_grpc_pb.js",
   "repository": "https://github.com/zaucy/mongo-proto",
